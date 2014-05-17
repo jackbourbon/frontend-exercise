@@ -20,10 +20,9 @@ the teams the pilots belong to.
 
 Create an API to list the current situation of the race, every
 time the API is called, choose randomly a pilot and increment its points by 1.
-Implement another API to provide the pilot team by team ID (it is easier to do
-this on UI, but just do it in the API)
+Implement another API to provide the team by team ID. (Rest API call must return only 1 object)
 
-Data for the drivers and teams is provided in the data folder.
+Data for the drivers and teams is provided in the `data/` folder.
 
 ### Frontend
 
