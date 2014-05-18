@@ -38,7 +38,7 @@ for the team. Make some way to return to the standings list.
 Other requirements/suggestions:
 
  * A little of UI candy is appreciated.
- * Implement a filter a service and directive using AngularJS.
+ * Implement at least a filter, a service and a directive using AngularJS.
  * **Write couple tests with any framework of choice.**
 
 ## Tips to get started
