@@ -12,11 +12,13 @@ def home():
 
 @app.route('/api/standings.json')
 def standings():
+    # TODO: Implement
     pass
 
 
-@app.route('/pai/car/<int:car_id>.json')
-def car_details(post_id):
+@app.route('/pai/team/<int:team_id>.json')
+def team_details(team_id):
+    # TODO: Implement
     pass
 
 if __name__ == '__main__':
