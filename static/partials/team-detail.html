@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row">
+    <div>
+      <label>Team:</label>
+      {{team.team}}
+    </div>
+    <div>
+      <label>Car:</label>
+      {{team.car}}
+    </div>
+    <div>
+      <label>Drivers:</label>
+      <table class="table table-stripped">
+        <tr>
+          <th>Driver</th>
+          <th>Country</th>
+          <th>Points</th>
+        </tr>
+        <tr ng-repeat="driver in drivers | filter:{ team:team.id } | orderBy:'-points'">
+          <td>{{driver.driver}}</td>
+          <td>{{driver.country}}</td>
+          <td>{{driver.points}}</td>
+        </tr>
+    </div>
+  </div>
+</div>
