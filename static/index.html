@@ -6,13 +6,30 @@
         <title></title>
         <meta name="description" content="Exercise">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <link rel="stylesheet" href="/static/css/main.css">
-
+        <link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.css"
     </head>
     <body>
         <script src="/static/bower_components/angular/angular.js"></script>
         <script src="/static/bower_components/angular-route/angular-route.js"></script>
         <script src="/static/js/app.js"></script>
+        <div class="container-fluid" ng-controller="StandingsCtrl" ng-app="grandprixApp">
+          <div class="row">
+            <table class="table table-stripped">
+              <tr>
+                <th>Driver</th>
+                <th>Team</th>
+                <th>Country</th>
+                <th>Points</th>
+              </th>
+              <tr ng-repeat="driver in drivers">
+                <td>{{driver.driver}}</td>
+                <td>{{driver.team}}</td>
+                <td>{{driver.country}}</td>
+                <td>{{driver.points}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
     </body>
 </html>
