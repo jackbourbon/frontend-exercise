@@ -1,5 +1,9 @@
 var grandprixApp = angular.module('grandprixApp', ['ngRoute']);
 
+grandprixApp.run(['Standings','$interval', function(Standings, $interval) {
+  $interval(Standings.getDrivers.bind(Standings), 1000);
+}]);
+
 //Router
 grandprixApp.config(['$routeProvider', function($routeProvider){
     $routeProvider.
@@ -30,21 +34,35 @@ angular.module('grandprixApp')
         };
 }]);
 
-//Controllers
-grandprixApp.controller('StandingsCtrl', ['$scope', 'api', '$interval', function($scope, api, $interval){
-  $interval(function() {
-    api.getStandings().success(function(data){
-      $scope.drivers = data;
-    });
-  }, 1000);
+//Factories
+grandprixApp.factory('Standings', ['api', '$filter', function(api, $filter) {
+    var Standings = {
+        drivers: {}
+    };
+
+    Standings.getDrivers = function() {
+        var updatedStandings = this;
+
+        api.getStandings().success(function(data){
+            updatedStandings.drivers = $filter('orderBy')(data, '-points');
+        });
+    };
+
+    return Standings;
 }]);
 
-grandprixApp.controller('TeamDetailCtrl', ['$scope', 'api', '$routeParams', '$filter', function($scope, api, $routeParams, $filter){
+grandprixApp.controller('StandingsCtrl', ['$scope', 'Standings', function($scope, Standings){
+    $scope.Standings = Standings;
+}]);
+
+grandprixApp.controller('TeamDetailCtrl', ['$scope', 'api', '$routeParams', 'Standings', function($scope, api, $routeParams, Standings){
   api.getTeamInfo($routeParams.teamId).success(function(data){
     $scope.team = data;
   });
 
-  api.getStandings().success(function(data){
-    $scope.drivers = $filter('orderBy')(data, '-points')
-  });
+  $scope.Standings = Standings;
+
+  //api.getStandings().success(function(data){
+  //  $scope.drivers = $filter('orderBy')(data, '-points')
+  //});
 }]);

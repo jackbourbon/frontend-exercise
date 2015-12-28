@@ -17,12 +17,16 @@
           <th>Country</th>
           <th>Points</th>
         </tr>
-        <tr ng-repeat="driver in drivers | filter:{ team:team.id }">
-          <td>{{drivers.indexOf(driver) + 1}}</td>
+        <tr ng-repeat="driver in Standings.drivers | filter:{ team:team.id }">
+          <td>{{Standings.drivers.indexOf(driver) + 1}}</td>
           <td>{{driver.driver}}</td>
           <td>{{driver.country}}</td>
           <td>{{driver.points}}</td>
         </tr>
+      </table>
     </div>
+  </div>
+  <div class="row">
+    <a href="#/">Back to Race Standings</a>
   </div>
 </div>
