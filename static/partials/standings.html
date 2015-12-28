@@ -2,12 +2,14 @@
     <div class="row">
         <table class="table table-stripped">
             <tr>
+                <th>#</th>
                 <th>Driver</th>
                 <th>Team</th>
                 <th>Country</th>
                 <th>Points</th>
             </tr>
             <tr ng-repeat="driver in drivers | orderBy:'-points'">
+                <td>{{drivers.indexOf(driver)}}</td>
                 <td>{{driver.driver}}</td>
                 <td><a href="#/teams/{{driver.team}}">{{driver.team}}</a></td>
                 <td>{{driver.country}}</td>

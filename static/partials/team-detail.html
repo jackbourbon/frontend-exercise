@@ -12,11 +12,13 @@
       <label>Drivers:</label>
       <table class="table table-stripped">
         <tr>
+          <th>#</th>
           <th>Driver</th>
           <th>Country</th>
           <th>Points</th>
         </tr>
-        <tr ng-repeat="driver in drivers | filter:{ team:team.id } | orderBy:'-points'">
+        <tr ng-repeat="driver in drivers | filter:{ team:team.id }">
+          <td>{{drivers.indexOf(driver) + 1}}</td>
           <td>{{driver.driver}}</td>
           <td>{{driver.country}}</td>
           <td>{{driver.points}}</td>

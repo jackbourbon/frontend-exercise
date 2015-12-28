@@ -23,12 +23,12 @@ grandprixApp.controller('StandingsCtrl', ['$scope', '$http', '$interval', functi
   }, 1000);
 }]);
 
-grandprixApp.controller('TeamDetailCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+grandprixApp.controller('TeamDetailCtrl', ['$scope', '$http', '$routeParams', '$filter', function($scope, $http, $routeParams, $filter){
   $http.get('api/team/' + $routeParams.teamId + '.json').success(function(data){
     $scope.team = data;
   });
 
   $http.get('api/standings.json').success(function(data){
-    $scope.drivers = data;
+    $scope.drivers = $filter('orderBy')(data, '-points')
   });
 }]);
