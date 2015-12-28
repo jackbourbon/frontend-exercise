@@ -1,5 +1,6 @@
 var grandprixApp = angular.module('grandprixApp', ['ngRoute']);
 
+//Router
 grandprixApp.config(['$routeProvider', function($routeProvider){
     $routeProvider.
       when('/', {
@@ -15,20 +16,35 @@ grandprixApp.config(['$routeProvider', function($routeProvider){
       });
 }]);
 
-grandprixApp.controller('StandingsCtrl', ['$scope', '$http', '$interval', function($scope, $http, $interval){
+//Services
+angular.module('grandprixApp')
+    .service('api', ['$http', function ($http) {
+        var urlBase = 'api';
+
+        this.getStandings = function(){
+            return $http.get(urlBase + '/standings.json');
+        };
+
+        this.getTeamInfo = function(teamId){
+            return $http.get(urlBase + '/team/' + teamId + '.json');
+        };
+}]);
+
+//Controllers
+grandprixApp.controller('StandingsCtrl', ['$scope', 'api', '$interval', function($scope, api, $interval){
   $interval(function() {
-    $http.get('api/standings.json').success(function(data){
+    api.getStandings().success(function(data){
       $scope.drivers = data;
     });
   }, 1000);
 }]);
 
-grandprixApp.controller('TeamDetailCtrl', ['$scope', '$http', '$routeParams', '$filter', function($scope, $http, $routeParams, $filter){
-  $http.get('api/team/' + $routeParams.teamId + '.json').success(function(data){
+grandprixApp.controller('TeamDetailCtrl', ['$scope', 'api', '$routeParams', '$filter', function($scope, api, $routeParams, $filter){
+  api.getTeamInfo($routeParams.teamId).success(function(data){
     $scope.team = data;
   });
 
-  $http.get('api/standings.json').success(function(data){
+  api.getStandings().success(function(data){
     $scope.drivers = $filter('orderBy')(data, '-points')
   });
 }]);
