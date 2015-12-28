@@ -16,7 +16,7 @@ def get_drivers():
     return session['drivers']
 
 def increment_points(driver_list):
-    driver_index = (randint(0,len(driver_list)))
+    driver_index = (randint(0,len(driver_list)-1))
     driver_list[driver_index]['points'] = driver_list[driver_index]['points'] + 1
     return driver_list
 
@@ -24,7 +24,7 @@ def get_teams_by_id():
     if not session.get('teams_by_id'):
         with open(DATA_DIR + '/teams.json') as data_file:
             data = json.load(data_file)
-            session['teams_by_id'] = dict(map(lambda x: (x['id'], x), data))
+            session['teams_by_id'] = dict(map(lambda x: (str(x['id']), x), data))
     return session['teams_by_id']
 
 @app.route('/')
