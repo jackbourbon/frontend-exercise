@@ -1,5 +1,5 @@
 import os.path, json
-from flask import Flask, session
+from flask import Flask, session, jsonify
 from IPython import embed
 from random import randint
 
@@ -7,6 +7,8 @@ SRC_DIR = os.path.abspath(os.path.dirname(__file__))
 DATA_DIR = os.path.join(SRC_DIR, 'data')
 
 app = Flask(__name__)
+app.config.from_object(__name__)
+
 app.config['SECRET_KEY'] = 'top-secret!'
 
 def get_drivers():
@@ -40,7 +42,10 @@ def standings():
 @app.route('/api/team/<int:team_id>.json')
 def team_details(team_id):
     teams_by_id = get_teams_by_id()
-    return json.dumps(teams_by_id[str(team_id)])
+    try:
+        return json.dumps(teams_by_id[str(team_id)])
+    except (KeyError):
+        return jsonify(error=404, text="Not found"), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
