@@ -53,6 +53,17 @@ grandprixApp.factory('Standings', ['api', '$filter', function(api, $filter) {
 
 grandprixApp.controller('StandingsCtrl', ['$scope', 'Standings', function($scope, Standings){
     $scope.Standings = Standings;
+    $scope.teams = {}
+}])
+.directive('myTeamFinder', ['api', function(api) {
+    return {
+        template: '<a href="#/teams/{{driver.team}}">{{teams[driver.team]}}</a>',
+        link: function(scope){
+            api.getTeamInfo(scope.driver.team).success(function(data){
+                scope.teams[scope.driver.team] = data.team;
+            });
+        }
+    }
 }]);
 
 grandprixApp.controller('TeamDetailCtrl', ['$scope', 'api', '$routeParams', 'Standings', function($scope, api, $routeParams, Standings){
@@ -61,8 +72,4 @@ grandprixApp.controller('TeamDetailCtrl', ['$scope', 'api', '$routeParams', 'Sta
   });
 
   $scope.Standings = Standings;
-
-  //api.getStandings().success(function(data){
-  //  $scope.drivers = $filter('orderBy')(data, '-points')
-  //});
 }]);

@@ -11,7 +11,7 @@
             <tr ng-repeat="driver in Standings.drivers">
                 <td>{{$index+1}}</td>
                 <td>{{driver.driver}}</td>
-                <td><a href="#/teams/{{driver.team}}">{{driver.team}}</a></td>
+                <td><span my-team-finder></span></td>
                 <td>{{driver.country}}</td>
                 <td>{{driver.points}}</td>
             </tr>
