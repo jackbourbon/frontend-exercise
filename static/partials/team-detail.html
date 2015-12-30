@@ -1,15 +1,15 @@
-<div class="team team-car">
-  {{team.car}}
-</div>
-<div class="team team-name">
-  <h2 class="team-title">
+<div class="car-banner" style="background-image:url(static/img/cars/{{team.id}}.png)">
+  <h2 class="team team-title">
     {{team.team}}
   </h2>
+  <h4 class="team team-car">
+    {{team.car}}
+  </h4>
 </div>
 <div>
-  <div class="team team-drivers">
-    <label>Drivers in race</label>
-  </div>
+  <h4 class="team team-drivers">
+    Drivers in race:
+  </h4>
   <table class="table table-stripped standings">
     <tr>
       <th>#</th>
