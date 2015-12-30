@@ -37,7 +37,7 @@ angular.module('grandprixApp')
 //Factories
 grandprixApp.factory('Standings', ['api', '$filter', function(api, $filter) {
     var Standings = {
-        drivers: {}
+        drivers: []
     };
 
     Standings.getDrivers = function() {

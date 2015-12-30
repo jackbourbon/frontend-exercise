@@ -1,20 +1,17 @@
-<div class="container-fluid">
-    <div class="row">
-        <table class="table table-stripped">
-            <tr>
-                <th>#</th>
-                <th>Driver</th>
-                <th>Team</th>
-                <th>Country</th>
-                <th>Points</th>
-            </tr>
-            <tr ng-repeat="driver in Standings.drivers">
-                <td>{{$index+1}}</td>
-                <td>{{driver.driver}}</td>
-                <td><span my-team-finder></span></td>
-                <td>{{driver.country}}</td>
-                <td>{{driver.points}}</td>
-            </tr>
-        </table>
-    </div>
-</div>
+<table class="table table-stripped standings" ng-if="Standings.drivers.length > 0">
+  <tr>
+    <th>#</th>
+    <th>Driver</th>
+    <th>Team</th>
+    <th class="points">Points</th>
+  </tr>
+  <tr ng-repeat="driver in Standings.drivers" ng-class="{success: $first}">
+    <td><strong>{{$index+1}}</strong></td>
+    <td>
+      <img src="static/img/flags/{{driver.country}}.png" class="flag" />
+      {{driver.driver}}
+    </td>
+    <td><span my-team-finder></span></td>
+    <td class="points">{{driver.points}}</td>
+  </tr>
+</table>
