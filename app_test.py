@@ -14,6 +14,13 @@ class AppTestCase(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def get_drivers_points(self):
+        result = self.app.get('/api/standings.json')
+        result_parsed = json.loads(result.data)
+        drivers_points = map(lambda x: x['points'], result_parsed)
+        total_points = reduce(lambda x,y: x+y, drivers_points)
+        return total_points
+
     def test_home_status_code(self):
         # sends HTTP GET request to the application
         # on the specified path
@@ -31,17 +38,10 @@ class AppTestCase(unittest.TestCase):
 
     # Test that checks that one of the drivers gets incremented their points by one after each call
     def test_standings_increment_points(self):
-        result = self.app.get('/api/standings.json')
-        result_parsed = json.loads(result.data)
-        drivers_points = map(lambda x: x['points'], result_parsed)
-        total_points = reduce(lambda x,y: x+y, drivers_points)
-        self.assertEqual(total_points, 1)
+        total_points_request_1 = self.get_drivers_points()
+        total_points_request_2 = self.get_drivers_points()
 
-        result = self.app.get('/api/standings.json')
-        result_parsed = json.loads(result.data)
-        drivers_points = map(lambda x: x['points'], result_parsed)
-        total_points = reduce(lambda x,y: x+y, drivers_points)
-        self.assertEqual(total_points, 2)
+        self.assertEqual(total_points_request_2, total_points_request_1 + 1)
 
     # Basic test for the teams call
     def test_team_details_returned(self):
