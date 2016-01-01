@@ -8,7 +8,7 @@
   <tr ng-repeat="driver in Standings.drivers" ng-class="{success: $first}">
     <td><strong>{{$index+1}}</strong></td>
     <td>
-      <img src="static/img/flags/{{driver.country}}.png" class="flag" />
+      <img ng-src="static/img/flags/{{driver.country}}.png" class="flag" />
       {{driver.driver}}
     </td>
     <td><span my-team-finder></span></td>

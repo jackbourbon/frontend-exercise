@@ -1,4 +1,4 @@
-<div class="car-banner" style="background-image:url(static/img/cars/{{team.id}}.png)">
+<div class="car-banner" ng-style="{'background-image':'url(static/img/cars/{{team.id}}.png)'}" ng-if="team.id">
   <h2 class="team team-title">
     {{team.team}}
   </h2>
@@ -19,7 +19,7 @@
     <tr ng-repeat="driver in Standings.drivers | filter:{ team:team.id }" ng-class="{success: Standings.drivers[0] == driver}" >
       <td><strong>{{Standings.drivers.indexOf(driver) + 1}}</strong></td>
       <td>
-        <img src="static/img/flags/{{driver.country}}.png" />
+        <img ng-src="static/img/flags/{{driver.country}}.png" />
         {{driver.driver}}
       </td>
       <td class="points">{{driver.points}}</td>
