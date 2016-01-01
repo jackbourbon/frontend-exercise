@@ -1,7 +1,6 @@
 from app import app
 import unittest
 import json
-from IPython import embed
 
 class AppTestCase(unittest.TestCase):
 

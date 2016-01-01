@@ -1,6 +1,5 @@
 import os.path, json
 from flask import Flask, session, jsonify
-from IPython import embed
 from random import randint
 
 SRC_DIR = os.path.abspath(os.path.dirname(__file__))

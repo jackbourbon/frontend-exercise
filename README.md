@@ -77,12 +77,3 @@ To run the end-to-end tests:
 * The application should be running
 * You should start **webdriver-manager** with `webdriver-manager start` and leave it running
 * And finally run protractor with protractor `test/protractor-conf.js`
-
-## Observations
-It was nice doing this exercise. I could refresh my Python a bit and especially learn some Angular up to the point of making something I feel a bit proud of, taking into consideration that I am more of a backend developer with zero experience in Angular.
-
-So thanks for such an interesting experience!
-
-Best Regards
-
-Alberto Vila
