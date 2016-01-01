@@ -27,7 +27,11 @@ For the frontend part:
 * **test/e2e/scenarios.js**: Tests for some end to end scenarios
 
 ##Running the application
-First, activate the virtual environment for this project:
+First, create a virtual environment for this project if it does not exist:
+
+    virtualenv env
+
+Then, activate the virtual environment for the project:
 
     source env/bin/activate
 
