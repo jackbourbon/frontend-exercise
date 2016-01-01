@@ -1,88 +1,79 @@
-# Exercise
+#Exercise Solution
+The given package contains a solution for the proposed exercise. The solution includes:
 
+* The optional part of displaying the current position of each driver of the team in the team details page
+* Implementations of at least a service, a directive and a filter in AngularJS
+* Tests
+* Some UI candy
 
-A frontend-backend exercise.
+## Package contents
 
-The purpose of the exercise is demonstrate usage of basic Python skills and
-intermediate skills of AngularJS.
+Inside the package you can find the following relevant files and directories:
 
-For the backend use Flask to implement a basic JSON Rest API (read only) with
-a bit of functionality. For the frontend showcase use of AngularJS consuming
-the implemented JSON API in the backend and with some basic functionality to
-display and interact with the data.
+For the backend part:
 
-## The Problem
+* **app.py**: The application file with the backend code
+* **app_test.py**: Unit tests for the backend
 
-Create a simple racing standings board and display information about each of
-the teams the pilots belong to.
+For the frontend part:
 
-### Backend
+* **static/index.html**: Index page for the application
+* **static/css/main.css**: CSS stylesheet for the application
+* **static/js/app.js**: Angular declarations and implementations
+* **static/partials/standings.html**: Partial template to show the current standings
+* **static/partials/team-detail.html**: Partial template to show the details page for each team
+* **static/img**: Directory which adds a few images for the application's look & feel.
+* **test/unit/apiSpec.js**: A simple unit test about the API call
+* **test/e2e/scenarios.js**: Tests for some end to end scenarios
 
-Create an API to list the current situation of the race, every
-time the API is called, choose randomly a pilot and increment its points by 1.
-Implement another API to provide the team by team ID. (Rest API call must return only 1 object)
-
-Data for the drivers and teams is provided in the `data/` folder.
-
-### Frontend
-
-Using AngularJS and angular-router create 2 views, one containing the list of
-pilots, their country and team and the current standings on the race.
-Update the results every second.
-
-In the list of standings every pilot must be selectable and redirect to another
-view using angular-router containing information about the team the pilot
-belongs to. Optionally display the position in the race of each of the pilots
-for the team. Make some way to return to the standings list.
-
-Other requirements/suggestions:
-
- * A little of UI candy is appreciated.
- * Implement at least a filter, a service and a directive using AngularJS.
- * **Write couple tests with any framework of choice.**
-
-## Tips to get started
-
-Install python in your system.
-
-Install virtualenv for python https://pypi.python.org/pypi/virtualenv. This
-step is optional but recommended, since it won't make available globally Flask
-to your system, but only for this project. If not using virtualenv you can just
-run:
-
-    easy_install Flask
-
-or
-
-    pip install Flask
-
-If using virtualenv, create a virtual environment in the cloned project folder.
-Call it `env`:
-
-    virtualenv env
-
-Activate the virtual environment you will have to do this every time you get
-back to the project:
+##Running the application
+First, activate the virtual environment for this project:
 
     source env/bin/activate
 
-Install the dependencies for the project:
+If it is the first time you are running the project, install the dependencies for the project running:
 
     pip install -r requirements.txt
-
-to run the app just do
-
-    python app.py
-
-the Flask server (in debug mode) will be running in port 5000. It loads in
-its root the base HTML file to build on.
-
-Install bower dependencies
+    
+If it is the first time you are running the project, install bower dependencies with:
 
     bower install
 
-All yours, have fun!
+And finally run the app with:
+
+    python app.py
+
+After this the application should be available at the address [http://localhost:5000](http://localhost:5000)
 
 
-PS: I have no idea of Formula1 or racing, just felt easy to propose a problem
-and find real data for the examples.
+## Testing
+###Tool Installation
+I am using **Karma** for unit testing and **Protractor** for end to end testing.
+
+In case you don't have these tools installed you can do it easily following the instructions specified at their web pages:
+
+[Karma installation page](http://karma-runner.github.io/0.13/intro/installation.htm)
+
+[Protractor reference page](https://angular.github.io/protractor/#)
+
+Also, both tools are set to work in Chrome
+
+###Backend
+I used Python's **unittest** package to write unit tests for the API. To run them execute
+
+    python app_test.py
+
+###Frontend
+
+
+To run the unit tests execute:
+
+
+    karma start test/karma.conf.js
+
+
+To run the end-to-end tests:
+
+* The application should be running
+* You should start **webdriver-manager** with `webdriver-manager start` and leave it running
+* And finally run protractor with protractor `test/protractor-conf.js`
